@@ -52384,10 +52384,11 @@ exports.updateCheckRunClose = updateCheckRunClose;
 /***/ }),
 
 /***/ 3449:
-/***/ (function(__unused_webpack_module, exports) {
+/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 "use strict";
 
+//move  CWESupportmatrix  to constants file and import here
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -52399,11 +52400,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.checkCWE = void 0;
-function checkCWE(flawInfo, options) {
-    return __awaiter(this, void 0, void 0, function* () {
+const constants_1 = __nccwpck_require__(3691);
+function checkCWE(flawInfo_1, options_1) {
+    return __awaiter(this, arguments, void 0, function* (flawInfo, options, batchFix = false) {
         if (flawInfo.language == 'java') {
             console.log('CWE check for Java');
-            const supportedCWEs = [80, 89, 113, 117, 327, 331, 382, 470, 597, 601];
+            const supportedCWEs = batchFix ? constants_1.CWESupportMatrix.batch.java : constants_1.CWESupportMatrix.individual.java;
             if (supportedCWEs.includes(flawInfo.cweID)) {
                 if (options.DEBUG == 'true') {
                     console.log('#######- DEBUG MODE -#######');
@@ -52417,7 +52419,7 @@ function checkCWE(flawInfo, options) {
                 if (options.DEBUG == 'true') {
                     console.log('#######- DEBUG MODE -#######');
                     console.log('check_cwe_support.ts');
-                    console.log('Checks - CWE ' + flawInfo.CWE + ' is not supported Java');
+                    console.log('Checks - CWE ' + flawInfo.cweID + ' is not supported Java');
                     console.log('#######- DEBUG MODE -#######');
                 }
                 return false;
@@ -52425,7 +52427,7 @@ function checkCWE(flawInfo, options) {
         }
         else if (flawInfo.language == 'csharp') {
             console.log('CWE check for C#');
-            const supportedCWEs = [80, 89, 201, 209, 259, 352, 404, 601, 611, 798];
+            const supportedCWEs = batchFix ? constants_1.CWESupportMatrix.batch.cs : constants_1.CWESupportMatrix.individual.cs;
             if (supportedCWEs.includes(flawInfo.cweID)) {
                 if (options.DEBUG == 'true') {
                     console.log('#######- DEBUG MODE -#######');
@@ -52452,7 +52454,7 @@ function checkCWE(flawInfo, options) {
                 console.log('CWE check for JavaScript');
                 console.log('#######- DEBUG MODE -#######');
             }
-            const supportedCWEs = [73, 78, 80, 113, 117, 327, 611, 614];
+            const supportedCWEs = batchFix ? constants_1.CWESupportMatrix.batch.js : constants_1.CWESupportMatrix.individual.js;
             if (supportedCWEs.includes(flawInfo.cweID)) {
                 if (options.DEBUG == 'true') {
                     console.log('#######- DEBUG MODE -#######');
@@ -52474,7 +52476,7 @@ function checkCWE(flawInfo, options) {
         }
         else if (flawInfo.language == 'python') {
             console.log('CWE check for Python');
-            const supportedCWEs = [73, 78, 80, 89, 295, 327, 331, 601, 757];
+            const supportedCWEs = batchFix ? constants_1.CWESupportMatrix.batch.py : constants_1.CWESupportMatrix.individual.py;
             if (supportedCWEs.includes(flawInfo.cweID)) {
                 if (options.DEBUG == 'true') {
                     console.log('#######- DEBUG MODE -#######');
@@ -52496,7 +52498,7 @@ function checkCWE(flawInfo, options) {
         }
         else if (flawInfo.language == 'php') {
             console.log('CWE check for PHP');
-            const supportedCWEs = [73, 80, 89, 117];
+            const supportedCWEs = batchFix ? constants_1.CWESupportMatrix.batch.php : constants_1.CWESupportMatrix.individual.php;
             if (supportedCWEs.includes(flawInfo.cweID)) {
                 if (options.DEBUG == 'true') {
                     console.log('#######- DEBUG MODE -#######');
@@ -52518,7 +52520,7 @@ function checkCWE(flawInfo, options) {
         }
         else if (flawInfo.language == 'scala') {
             console.log('CWE check for Scala');
-            const supportedCWEs = [78, 80, 89, 117, 611];
+            const supportedCWEs = batchFix ? constants_1.CWESupportMatrix.batch.scala : constants_1.CWESupportMatrix.individual.scala;
             if (supportedCWEs.includes(flawInfo.cweID)) {
                 if (options.DEBUG == 'true') {
                     console.log('#######- DEBUG MODE -#######');
@@ -52540,7 +52542,7 @@ function checkCWE(flawInfo, options) {
         }
         else if (flawInfo.language == 'kotlin') {
             console.log('CWE check for Kotlin');
-            const supportedCWEs = [80, 89, 113, 117, 331];
+            const supportedCWEs = batchFix ? constants_1.CWESupportMatrix.batch.kotlin : constants_1.CWESupportMatrix.individual.kotlin;
             if (supportedCWEs.includes(flawInfo.cweID)) {
                 if (options.DEBUG == 'true') {
                     console.log('#######- DEBUG MODE -#######');
@@ -52562,7 +52564,7 @@ function checkCWE(flawInfo, options) {
         }
         else if (flawInfo.language == 'go') {
             console.log('CWE check for Go');
-            const supportedCWEs = [73, 78, 117];
+            const supportedCWEs = batchFix ? constants_1.CWESupportMatrix.batch.go : constants_1.CWESupportMatrix.individual.go;
             if (supportedCWEs.includes(flawInfo.cweID)) {
                 if (options.DEBUG == 'true') {
                     console.log('#######- DEBUG MODE -#######');
@@ -52585,6 +52587,44 @@ function checkCWE(flawInfo, options) {
     });
 }
 exports.checkCWE = checkCWE;
+
+
+/***/ }),
+
+/***/ 3691:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.CWESupportMatrix = exports.tempFolder = exports.sourcecodeFolderName = void 0;
+exports.sourcecodeFolderName = 'app/';
+//export temp folder value from github action
+exports.tempFolder = process.env.RUNNER_TEMP ? (process.env.RUNNER_TEMP + '/') : '';
+exports.CWESupportMatrix = {
+    "individual": {
+        "java": [117, 80, 404, 159, 209, 597, 89, 611, 331, 327, 113, 601, 502],
+        "cs": [80, 117, 352, 73, 404, 89, 209, 316, 601, 327, 331, 611],
+        "js": [80, 117, 89, 73, 601, 352, 78, 209, 327, 312, 614, 311, 611, 113],
+        "php": [80, 73, 89, 117],
+        "py": [80, 73, 331, 327, 295, 601, 78, 89, 757],
+        "kotlin": [80, 89, 113, 117, 331, 404],
+        "scala": [611, 117, 80, 78],
+        "go": [73, 78, 117],
+        "ruby": [73, 80, 89, 117, 601]
+    },
+    "batch": {
+        "java": [117, 80, 404, 159, 209, 597, 89, 611, 331, 113],
+        "cs": [80, 117, 352, 404, 89, 209, 316, 331, 611],
+        "js": [80, 117, 89, 352, 78, 209, 614, 611, 113],
+        "php": [80, 89, 117],
+        "py": [80, 331, 295, 78, 89, 757],
+        "kotlin": [80, 89, 113, 117, 331, 404],
+        "scala": [611, 117, 80, 78],
+        "go": [73, 78, 117],
+        "ruby": [73, 80, 89, 117, 601]
+    }
+};
 
 
 /***/ }),
@@ -53395,6 +53435,8 @@ const core = __importStar(__nccwpck_require__(5763));
 const run_single_1 = __nccwpck_require__(1733);
 const run_batch_1 = __nccwpck_require__(9924);
 const fs_1 = __importDefault(__nccwpck_require__(7147));
+const constants_1 = __nccwpck_require__(3691);
+const constants_2 = __nccwpck_require__(3691);
 let credentials = {};
 let options = {};
 function getInputOrEnv(name, required) {
@@ -53425,6 +53467,9 @@ options['token'] = getInputOrEnv('token', false);
 const resultsFile = fs_1.default.readFileSync(options.file, 'utf8');
 if (options.DEBUG == 'true') {
     console.log('#######- DEBUG MODE -#######');
+    console.log('process.env.RUNNER_TEMP= ' + process.env.RUNNER_TEMP);
+    console.log('source folder = ' + constants_1.sourcecodeFolderName);
+    console.log('temp folder = ' + constants_2.tempFolder);
     console.log('results.json: ' + resultsFile);
     console.log('checking if items are present to fix: ');
     console.log('#######- DEBUG MODE -#######');
@@ -53542,10 +53587,10 @@ function upload(platform, tar, options) {
     });
 }
 exports.upload = upload;
-function uploadBatch(credentials, tar, options) {
+function uploadBatch(credentials, tarPath, options) {
     return __awaiter(this, void 0, void 0, function* () {
         const platform = yield (0, select_platform_1.selectPlatfrom)(credentials);
-        const fileBuffer = fs_1.default.readFileSync('app.tar.gz');
+        const fileBuffer = fs_1.default.readFileSync(tarPath);
         const formData = new form_data_1.default();
         formData.append('data', fileBuffer, 'app.tar.gz');
         formData.append('name', 'data');
@@ -53902,6 +53947,8 @@ const child_process_1 = __nccwpck_require__(2081);
 const checkRun_1 = __nccwpck_require__(9881);
 const rewritePath_1 = __nccwpck_require__(7415);
 const create_pr_1 = __nccwpck_require__(8931);
+const constants_1 = __nccwpck_require__(3691);
+const constants_2 = __nccwpck_require__(3691);
 function runBatch(options, credentials) {
     return __awaiter(this, void 0, void 0, function* () {
         //read json file
@@ -53951,6 +53998,11 @@ function runBatch(options, credentials) {
                     language: options.language,
                     sourceFile: sourceFile,
                 };
+                if (options.DEBUG == 'true') {
+                    console.log('#######- DEBUG MODE -#######');
+                    console.log('initialFlawInfo', initialFlawInfo);
+                    console.log('#######- DEBUG MODE -#######');
+                }
                 let include = 0;
                 if (options.files == 'changed') {
                     console.log('Checking if file is part of PR');
@@ -53987,7 +54039,7 @@ function runBatch(options, credentials) {
                         }
                         if (cweList.includes(flawArray[sourceFile][j].cwe_id)) {
                             console.log('CWE ' + flawArray[sourceFile][j].cwe_id + ' is in the list of CWEs to fix, creating flaw info');
-                            if ((yield (0, check_cwe_support_1.checkCWE)(initialFlawInfo, options)) == true) {
+                            if ((yield (0, check_cwe_support_1.checkCWE)(initialFlawInfo, options, true)) == true) {
                                 const flawInfo = yield (0, createFlawInfo_1.createFlawInfo)(initialFlawInfo, options);
                                 if (options.DEBUG == 'true') {
                                     console.log('#######- DEBUG MODE -#######');
@@ -53998,10 +54050,10 @@ function runBatch(options, credentials) {
                                 //write flaw info and source file
                                 const flawFoldername = 'cwe-' + flawInfo.CWEId + '-line-' + flawInfo.line + '-issue-' + flawInfo.issueId;
                                 const flawFilenane = 'flaw_' + flawInfo.issueId + '.json';
-                                console.log('Writing flaw to: app/' + flawFoldername + '/' + flawFilenane);
-                                fs_1.default.mkdirSync('app/flaws/' + flawFoldername, { recursive: true });
-                                fs_1.default.writeFileSync('app/flaws/' + flawFoldername + '/' + flawFilenane, JSON.stringify(flawInfo, null, 2));
-                                if (fs_1.default.existsSync('app/' + flawInfo.sourceFile)) {
+                                console.log(`Writing flaw to: ${constants_2.tempFolder + constants_1.sourcecodeFolderName}` + flawFoldername + '/' + flawFilenane);
+                                fs_1.default.mkdirSync(constants_2.tempFolder + constants_1.sourcecodeFolderName + 'flaws/' + flawFoldername, { recursive: true });
+                                fs_1.default.writeFileSync(constants_2.tempFolder + constants_1.sourcecodeFolderName + '/flaws/' + flawFoldername + '/' + flawFilenane, JSON.stringify(flawInfo, null, 2));
+                                if (fs_1.default.existsSync(constants_2.tempFolder + constants_1.sourcecodeFolderName + flawInfo.sourceFile)) {
                                     console.log('File exists nothing to do');
                                 }
                                 else {
@@ -54009,11 +54061,11 @@ function runBatch(options, credentials) {
                                     let str = flawInfo.sourceFile;
                                     let lastSlashIndex = str.lastIndexOf('/');
                                     let strBeforeLastSlash = str.substring(0, lastSlashIndex);
-                                    if (!fs_1.default.existsSync('app/' + strBeforeLastSlash)) {
+                                    if (!fs_1.default.existsSync(constants_2.tempFolder + constants_1.sourcecodeFolderName + strBeforeLastSlash)) {
                                         console.log('Destination directory does not exist lest create it');
-                                        fs_1.default.mkdirSync('app/' + strBeforeLastSlash, { recursive: true });
+                                        fs_1.default.mkdirSync(constants_2.tempFolder + constants_1.sourcecodeFolderName + strBeforeLastSlash, { recursive: true });
                                     }
-                                    fs_1.default.copyFileSync(flawInfo.sourceFile, 'app/' + flawInfo.sourceFile);
+                                    fs_1.default.copyFileSync(flawInfo.sourceFile, constants_2.tempFolder + constants_1.sourcecodeFolderName + flawInfo.sourceFile);
                                 }
                             }
                             else {
@@ -54026,15 +54078,15 @@ function runBatch(options, credentials) {
                     }
                     else {
                         console.log('Fix for all CWEs');
-                        if ((yield (0, check_cwe_support_1.checkCWE)(initialFlawInfo, options)) == true) {
+                        if ((yield (0, check_cwe_support_1.checkCWE)(initialFlawInfo, options, true)) == true) {
                             const flawInfo = yield (0, createFlawInfo_1.createFlawInfo)(initialFlawInfo, options);
                             //write flaw info and source file
                             const flawFoldername = 'cwe-' + flawInfo.CWEId + '-line-' + flawInfo.line + '-issue-' + flawInfo.issueId;
                             const flawFilenane = 'flaw_' + flawInfo.issueId + '.json';
-                            console.log('Writing flaw to: app/flaws/' + flawFoldername + '/' + flawFilenane);
-                            fs_1.default.mkdirSync('app/flaws/' + flawFoldername, { recursive: true });
-                            fs_1.default.writeFileSync('app/flaws/' + flawFoldername + '/' + flawFilenane, JSON.stringify(flawInfo, null, 2));
-                            if (fs_1.default.existsSync('app/' + flawInfo.sourceFile)) {
+                            console.log(`Writing flaw to: ${constants_2.tempFolder + constants_1.sourcecodeFolderName}` + flawFoldername + '/' + flawFilenane);
+                            fs_1.default.mkdirSync(constants_2.tempFolder + constants_1.sourcecodeFolderName + 'flaws/' + flawFoldername, { recursive: true });
+                            fs_1.default.writeFileSync(constants_2.tempFolder + constants_1.sourcecodeFolderName + 'flaws/' + flawFoldername + '/' + flawFilenane, JSON.stringify(flawInfo, null, 2));
+                            if (fs_1.default.existsSync(constants_2.tempFolder + constants_1.sourcecodeFolderName + flawInfo.sourceFile)) {
                                 console.log('File exists nothing to do');
                             }
                             else {
@@ -54042,11 +54094,11 @@ function runBatch(options, credentials) {
                                 let str = flawInfo.sourceFile;
                                 let lastSlashIndex = str.lastIndexOf('/');
                                 let strBeforeLastSlash = str.substring(0, lastSlashIndex);
-                                if (!fs_1.default.existsSync('app/' + strBeforeLastSlash)) {
+                                if (!fs_1.default.existsSync(constants_2.tempFolder + constants_1.sourcecodeFolderName + strBeforeLastSlash)) {
                                     console.log('Destination directory does not exist lest create it');
-                                    fs_1.default.mkdirSync('app/' + strBeforeLastSlash, { recursive: true });
+                                    fs_1.default.mkdirSync(constants_2.tempFolder + constants_1.sourcecodeFolderName + strBeforeLastSlash, { recursive: true });
                                 }
-                                fs_1.default.copyFileSync(flawInfo.sourceFile, 'app/' + flawInfo.sourceFile);
+                                fs_1.default.copyFileSync(flawInfo.sourceFile, constants_2.tempFolder + constants_1.sourcecodeFolderName + flawInfo.sourceFile);
                             }
                         }
                         else {
@@ -54057,15 +54109,15 @@ function runBatch(options, credentials) {
             }
         }
         ;
-        if (!fs_1.default.existsSync('app')) { // nothing to fix as no files with conditions met
+        if (!fs_1.default.existsSync(constants_2.tempFolder + constants_1.sourcecodeFolderName)) { // nothing to fix as no files with conditions met
             console.log("nothing to fix as no files with conditions met");
             process.exit(0);
         }
         //create the tar after all files are created and copied
         // the tr for the batch run has to be crearted with the local tar. The node moldule is not working
-        const tarball = (0, child_process_1.execSync)('tar -czf app.tar.gz -C app .');
+        const tarball = (0, child_process_1.execSync)(`tar -czf ${constants_2.tempFolder}app.tar.gz -C ${constants_2.tempFolder + constants_1.sourcecodeFolderName} .`);
         console.log('Tar is created');
-        const projectID = yield (0, requests_1.uploadBatch)(credentials, 'app.tar.gz', options);
+        const projectID = yield (0, requests_1.uploadBatch)(credentials, (constants_2.tempFolder + 'app.tar.gz'), options);
         console.log('Project ID is: ' + projectID);
         const checkBatchFixStatus = yield (0, requests_1.checkFixBatch)(credentials, projectID, options);
         if (checkBatchFixStatus == 1) {
@@ -54351,6 +54403,7 @@ function createTar(initialFlawInfo, options) {
         catch (err) {
             // File does not exist
             console.error('Tar cannot be created');
+            process.exit(1); //exit with error since we cannot proceed
         }
     });
 }

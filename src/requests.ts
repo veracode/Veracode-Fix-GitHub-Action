@@ -61,11 +61,11 @@ export async function upload(platform:any, tar:any, options:any) {
 
 }
 
-export async function uploadBatch(credentials:any, tar:any, options:any) {
+export async function uploadBatch(credentials:any, tarPath:any, options:any) {
 
     const platform:any = await selectPlatfrom(credentials)
 
-    const fileBuffer: Buffer = fs.readFileSync('app.tar.gz');
+    const fileBuffer: Buffer = fs.readFileSync(tarPath);
     const formData = new FormData();
     formData.append('data', fileBuffer, 'app.tar.gz');
     formData.append('name', 'data');

@@ -1,7 +1,11 @@
-export async function checkCWE(flawInfo:any, options:any) {
+//move  CWESupportmatrix  to constants file and import here
+
+import { CWESupportMatrix } from './constants'
+
+export async function checkCWE(flawInfo:any, options:any,batchFix=false){ 
     if (flawInfo.language == 'java'){
         console.log('CWE check for Java')
-        const supportedCWEs = [80,89,113,117,327,331,382,470,597,601]
+        const supportedCWEs = batchFix ? CWESupportMatrix.batch.java : CWESupportMatrix.individual.java
         if (supportedCWEs.includes(flawInfo.cweID)){
 
             if (options.DEBUG == 'true'){
@@ -16,7 +20,7 @@ export async function checkCWE(flawInfo:any, options:any) {
             if (options.DEBUG == 'true'){
                 console.log('#######- DEBUG MODE -#######')
                 console.log('check_cwe_support.ts')
-                console.log('Checks - CWE '+flawInfo.CWE+' is not supported Java')
+                console.log('Checks - CWE '+flawInfo.cweID+' is not supported Java')
                 console.log('#######- DEBUG MODE -#######')
             }
             return false
@@ -24,7 +28,7 @@ export async function checkCWE(flawInfo:any, options:any) {
     }
     else if (flawInfo.language == 'csharp'){
         console.log('CWE check for C#')
-        const supportedCWEs = [80,89,201,209,259,352,404,601,611,798]
+        const supportedCWEs = batchFix ? CWESupportMatrix.batch.cs : CWESupportMatrix.individual.cs
         if (supportedCWEs.includes(flawInfo.cweID)){
             if (options.DEBUG == 'true'){
                 console.log('#######- DEBUG MODE -#######')
@@ -51,7 +55,7 @@ export async function checkCWE(flawInfo:any, options:any) {
             console.log('CWE check for JavaScript')
             console.log('#######- DEBUG MODE -#######')
         }
-        const supportedCWEs = [73,78,80,113,117,327,611,614]
+        const supportedCWEs = batchFix ? CWESupportMatrix.batch.js : CWESupportMatrix.individual.js
         if (supportedCWEs.includes(flawInfo.cweID)){
             if (options.DEBUG == 'true'){
                 console.log('#######- DEBUG MODE -#######')
@@ -73,7 +77,7 @@ export async function checkCWE(flawInfo:any, options:any) {
     }
     else if (flawInfo.language == 'python'){
         console.log('CWE check for Python')
-        const supportedCWEs = [73,78,80,89,295,327,331,601,757]
+        const supportedCWEs = batchFix ? CWESupportMatrix.batch.py : CWESupportMatrix.individual.py
         if (supportedCWEs.includes(flawInfo.cweID)){
             if (options.DEBUG == 'true'){
                 console.log('#######- DEBUG MODE -#######')
@@ -95,7 +99,7 @@ export async function checkCWE(flawInfo:any, options:any) {
     }
     else if (flawInfo.language == 'php'){
         console.log('CWE check for PHP')
-        const supportedCWEs = [73,80,89,117]
+        const supportedCWEs = batchFix ? CWESupportMatrix.batch.php : CWESupportMatrix.individual.php
         if (supportedCWEs.includes(flawInfo.cweID)){
             if (options.DEBUG == 'true'){
                 console.log('#######- DEBUG MODE -#######')
@@ -117,7 +121,7 @@ export async function checkCWE(flawInfo:any, options:any) {
     }
     else if (flawInfo.language == 'scala'){
         console.log('CWE check for Scala')
-        const supportedCWEs = [78,80,89,117,611]
+        const supportedCWEs = batchFix ? CWESupportMatrix.batch.scala : CWESupportMatrix.individual.scala
         if (supportedCWEs.includes(flawInfo.cweID)){
             if (options.DEBUG == 'true'){
                 console.log('#######- DEBUG MODE -#######')
@@ -139,7 +143,7 @@ export async function checkCWE(flawInfo:any, options:any) {
     }
     else if (flawInfo.language == 'kotlin'){
         console.log('CWE check for Kotlin')
-        const supportedCWEs = [80,89,113,117,331]
+        const supportedCWEs = batchFix ? CWESupportMatrix.batch.kotlin : CWESupportMatrix.individual.kotlin
         if (supportedCWEs.includes(flawInfo.cweID)){
             if (options.DEBUG == 'true'){
                 console.log('#######- DEBUG MODE -#######')
@@ -161,7 +165,7 @@ export async function checkCWE(flawInfo:any, options:any) {
     }
     else if (flawInfo.language == 'go'){
         console.log('CWE check for Go')
-        const supportedCWEs = [73,78,117]
+        const supportedCWEs = batchFix ? CWESupportMatrix.batch.go : CWESupportMatrix.individual.go
         if (supportedCWEs.includes(flawInfo.cweID)){
             if (options.DEBUG == 'true'){
                 console.log('#######- DEBUG MODE -#######')

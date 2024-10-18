@@ -3,6 +3,8 @@ import { runSingle } from './run_single';
 import { runBatch } from './run_batch';
 import fs from 'fs';
 import { json } from 'stream/consumers';
+import { sourcecodeFolderName } from './constants';
+import { tempFolder } from './constants';
 
 
 let credentials:any = {}
@@ -40,6 +42,9 @@ const resultsFile = fs.readFileSync(options.file, 'utf8')
 
 if (options.DEBUG == 'true'){
     console.log('#######- DEBUG MODE -#######')
+    console.log('process.env.RUNNER_TEMP= ' +process.env.RUNNER_TEMP)
+    console.log('source folder = ' + sourcecodeFolderName)
+    console.log('temp folder = ' + tempFolder)
     console.log('results.json: '+resultsFile)
     console.log('checking if items are present to fix: ')
     console.log('#######- DEBUG MODE -#######')
